@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forget password page</title>
+  <style>
+    body {
+      background: #f6f8fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+    input[type="email"] {
+      width: 90%;
+      padding: 0.7rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input[type="email"]:focus {
+      border-color: #2563eb;
+    }
+    button {
+      width: 100%;
+      padding: 0.7rem;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    .flash-message {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Forgot Password?</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+      <input type="email" name="useremail" placeholder="Enter your email" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

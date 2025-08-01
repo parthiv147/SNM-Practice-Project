@@ -1,0 +1,160 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+  }
+
+  .navbar {
+    width: 100%;
+    background-color: #0f62fe;
+    padding: 10px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-left,
+  .navbar-center,
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-left {
+    gap: 20px;
+  }
+
+  .navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: bold;
+  }
+
+  .navbar-right {
+    gap: 15px;
+  }
+
+  .navbar span {
+    color: white;
+    font-weight: bold;
+  }
+
+  .navbar input[type="text"] {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: none;
+    color: black;
+  }
+
+  .navbar button {
+    background-color: #dc3545;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    padding-top: 80px;
+  }
+
+  .note-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
+  }
+
+  .note-container h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    color: #555;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  textarea {
+    resize: vertical;
+    height: 120px;
+  }
+
+  button[type="submit"] {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #4338ca;
+  }
+</style>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="navbar-left">
+    <span>Notes ▼</span>
+    <span>Files ▼</span>
+  </div>
+  <div class="navbar-center">
+    mushraf9a@gmail.com
+  </div>
+  <div class="navbar-right">
+    <input type="text" placeholder="Search...">
+    <button>Logout</button>
+  </div>
+</div>
+
+<!-- CENTERED FORM -->
+<div class="main-container">
+  <div class="note-container">
+    <h2>Add a New Note</h2>
+    <form method="POST">
+      <label for="title">Note Title</label>
+      <input type="text" name="title" id="title" required>
+
+      <label for="description">Description</label>
+      <textarea name="description" id="description" required></textarea>
+
+      <button type="submit">Add Note</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

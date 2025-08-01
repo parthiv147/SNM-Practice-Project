@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      background: #f5f7fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .login-container {
+      background: #fff;
+      max-width: 350px;
+      margin: 60px auto;
+      padding: 32px 28px 24px 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .login-container h2 {
+      margin-bottom: 18px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #444;
+      font-weight: 500;
+    }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 18px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #f9fafb;
+      transition: border 0.2s;
+    }
+    input[type="email"]:focus, input[type="password"]:focus {
+      border-color: #2563eb;
+      outline: none;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px 0;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button[type="submit"]:hover {
+      background: #1d4ed8;
+    }
+    .links {
+      margin-top: 18px;
+      text-align: center;
+    }
+    .links a {
+      color: #2563eb;
+      text-decoration: none;
+      margin: 0 8px;
+      font-size: 0.97rem;
+      transition: color 0.2s;
+    }
+    .links a:hover {
+      color: #1d4ed8;
+      text-decoration: underline;
+    }
+    .flash-message {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      padding: 10px 16px;
+      margin: 18px auto 0 auto;
+      max-width: 350px;
+      text-align: center;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+     <div class="flash-message">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <div class="login-container">
+    <h2>Login</h2>
+    <form method="POST">
+      <label for="useremail">Enter email</label>
+      <input type="email" name="useremail" id="useremail" required>
+      <label for="userpassword">Enter password</label>
+      <input type="password" name="userpassword" id="userpassword" required>
+      <button type="submit">Login</button>
+    </form>
+    <div class="links">
+      <a href="{{url_for('forgotpassword')}}">Forget password?</a><br>
+      <a href="{{url_for('register')}}">Register</a> |
+      <a href="{{url_for('home')}}">Home</a>
+    </div>
+  </div>
+</body>
+</html>

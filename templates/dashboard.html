@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f7f7f7;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #007BFF;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%; /* Directly below the dropdown */
+      left: 0;
+      background-color: white;
+      color: black;
+      min-width: 160px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    /* Fix: Keep it open when hovering over either dropdown or content */
+    .dropdown:hover .dropdown-content,
+    .dropdown-content:hover {
+      display: block;
+    }
+
+    .dropdown-content a {
+      padding: 10px 15px;
+      display: block;
+      text-decoration: none;
+      color: black;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .search-bar input[type="text"] {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .logout-btn {
+      background: #dc3545;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .container {
+      margin: 30px auto;
+      max-width: 600px;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+  <div class="nav-left">
+
+    <!-- Notes Dropdown -->
+    <div class="dropdown">
+      <span>Notes ▼</span>
+      <div class="dropdown-content">
+        <a href="{{url_for('addnotes')}}">Add Notes</a>
+        <a href="{{url_for('viewnotes')}}">View All</a>
+        <a href="{{url_for('getexceldata')}}">Excel</a>
+      </div>
+    </div>
+
+    <!-- Files Dropdown -->
+    <div class="dropdown">
+      <span>Files ▼</span>
+      <div class="dropdown-content">
+        <a href="{{url_for('fileupload')}}">Upload File</a>
+        <a href="{{ url_for('viewfiles') }}">View Uploaded Files</a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav-right">
+    <form class="search-bar" action="{{ url_for('search') }}" method="POST">
+  <input type="text" name="search_query" placeholder="Search..." required>
+  </form>
+
+    <form action="{{ url_for('userlogout') }}" method="POST" style="display:inline;">
+      <button type="submit" class="logout-btn">Logout</button>
+    </form>
+  </div>
+</nav>
+  <div class="container">
+    <h2>Welcome to the Dashboard</h2>
+  {% block content %} {% endblock %}
+
+  <!-- <div class="container"> -->
+    <!-- <a href="{{url_for('addnotes')}}"><h2>Add Notes</h2></a> -->
+    <!-- <form method="POST" action="{{ url_for('addnotes') }}">
+      <input type="text" name="title" placeholder="Enter title" required>
+      <textarea name="description" rows="5" placeholder="Enter description" required></textarea>
+      <input type="submit" value="Submit">
+    </form>
+  </div> -->
+
+</body>
+</html>
